@@ -40,7 +40,7 @@ const Problem = () => {
           {issues.map((issue, index) => (
             <div
               key={index}
-              className="flex gap-4 p-6 bg-red-50/50 border border-red-200/50 rounded-lg"
+              className="flex gap-4 p-6 bg-[#F3F9FF] border border-border/40 rounded-lg hover:shadow-sky-blue transition-all duration-300"
             >
               <div className="text-2xl flex-shrink-0">{issue.icon}</div>
               <p className="text-lg text-muted-foreground">{issue.title}</p>
@@ -48,10 +48,12 @@ const Problem = () => {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-red-50 to-orange-50 border border-red-200/50 p-8 rounded-lg mt-10">
-          <p className="text-lg text-muted-foreground mb-4">
-            <strong>The Reality:</strong> AI is an incredible architect, but it's not a finishing carpenter. You've successfully "Vibe Coded" a prototype, but you need a partner to cross the finish line into a scalable business.
-          </p>
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-[#F3F9FF] border border-border/40 p-8 rounded-lg mt-10">
+            <p className="text-lg text-muted-foreground text-center">
+              <strong>The Reality:</strong> AI is an incredible architect, but it's not a finishing carpenter. You've successfully "Vibe Coded" a prototype, but you need a partner to cross the finish line into a scalable business.
+            </p>
+          </div>
         </div>
       </div>
     </section>

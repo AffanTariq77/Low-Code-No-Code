@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Brain, Rocket, Zap } from "lucide-react";
+import { Brain, Rocket, Zap, MessageSquare } from "lucide-react";
 
 const pillars = [
   {
@@ -13,6 +13,12 @@ const pillars = [
     title: "Sprint Speed, Marathon Quality",
     description:
       <>Traditional dev shops want 6 months. Because we leverage the same AI tools you do, backed by real engineering skill, we aim for launch in <strong>days, not months</strong>.</>
+  },
+  {
+    icon: MessageSquare,
+    title: "No 'Dev-Speak' Gatekeeping",
+    description:
+      "You don't need to know what an API endpoint is. You just need to tell us what the app should do. We handle the translation.",
   },
   {
     icon: Zap,
@@ -53,7 +59,7 @@ const WhyWorkWithUs = () => {
             </linearGradient>
           </defs>
         </svg>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 md:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 max-w-7xl mx-auto">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (

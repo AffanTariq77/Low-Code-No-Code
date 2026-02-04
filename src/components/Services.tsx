@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import OurImpact from "./OurImpact";
 
 import {
   Zap,
@@ -58,11 +57,10 @@ const Services = () => {
   const [hovered, setHovered] = React.useState<number | null>(null);
 
   return (
-    <>
-      <section
-        id="services"
-        className="py-8 px-2 sm:px-6 md:py-10 bg-muted/20"
-      >
+    <section
+      id="services"
+      className="py-8 px-2 sm:px-6 md:py-10 bg-muted/20"
+    >
         <div className="container mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2
@@ -145,8 +143,6 @@ const Services = () => {
           </div>
         </div>
       </section>
-      <OurImpact />
-    </>
   );
 };
 

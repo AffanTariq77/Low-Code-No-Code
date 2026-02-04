@@ -11,8 +11,6 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
     name: "",
     email: "",
     company: "",
-    aiTool: "",
-    projectType: "",
     details: "",
   });
   const [loading, setLoading] = useState(false);
@@ -29,7 +27,7 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
     setError(null);
     setSuccess(false);
     // Basic validation
-    if (!formData.name || !formData.email || !formData.aiTool || !formData.projectType || !formData.details) {
+    if (!formData.name || !formData.email || !formData.details) {
       setError("Please fill in all required fields.");
       setLoading(false);
       return;
@@ -43,8 +41,6 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
           email: formData.email,
           message: formData.details,
           company: formData.company,
-          aiTool: formData.aiTool,
-          projectType: formData.projectType,
         }),
       });
       if (!res.ok) {
@@ -52,7 +48,7 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
         throw new Error(data.error || "Failed to book your launch plan.");
       }
       setSuccess(true);
-      setFormData({ name: "", email: "", company: "", aiTool: "", projectType: "", details: "" });
+      setFormData({ name: "", email: "", company: "", details: "" });
     } catch (err: any) {
       setError(err.message || "Failed to book your launch plan.");
     } finally {
@@ -96,47 +92,6 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
           Company Name
         </label>
         <Input id="company" placeholder="Your Company" value={formData.company} onChange={handleChange} />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label htmlFor="aiTool" className="text-sm font-medium">
-            AI Tool You Used *
-          </label>
-          <select
-            id="aiTool"
-            required
-            value={formData.aiTool}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">Select Tool</option>
-            <option value="Bolt.new">Bolt.new</option>
-            <option value="v0">Vercel v0</option>
-            <option value="Lovable">Lovable</option>
-            <option value="Replit">Replit</option>
-            <option value="Cursor">Cursor</option>
-            <option value="Windsurf">Windsurf</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div className="space-y-2">
-          <label htmlFor="projectType" className="text-sm font-medium">
-            What Do You Need? *
-          </label>
-          <select
-            id="projectType"
-            required
-            value={formData.projectType}
-            onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">Select Option</option>
-            <option value="Debug Code">Debug AI-Generated Code</option>
-            <option value="Productionize">Productionize Prototype</option>
-            <option value="Full Build">Full App Build</option>
-            <option value="Consultation">Consultation</option>
-          </select>
-        </div>
       </div>
       <div className="space-y-2">
         <label htmlFor="details" className="text-sm font-medium">

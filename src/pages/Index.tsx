@@ -11,12 +11,12 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden w-full max-w-[100vw]">
       <Navigation />
-    <div className="pt-32 mb-[-6rem] text-center bg-white">
-  <div className="container mx-auto px-4">
+    <div className="pt-24 sm:pt-28 md:pt-32 mb-[-4rem] sm:mb-[-5rem] md:mb-[-6rem] text-center bg-white overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
     <h1
-      className="text-5xl md:text-6xl font-extrabold tracking-tight"
+      className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight px-2"
       style={{ color: "#192841" }}
     >
       Prompt-to-Product Accelerator

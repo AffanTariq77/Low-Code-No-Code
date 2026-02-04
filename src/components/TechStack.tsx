@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 
@@ -251,24 +251,29 @@ const TechStack = () => {
   const [hovered, setHovered] = useState<{ cat: string; idx: number } | null>(
     null,
   );
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  React.useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   return (
-    <section id="tech-stack" className="py-8 px-2 sm:px-6 md:py-10">
-      <div className="container mx-auto">
-        <div className="text-center mb-12 md:mb-16">
+    <section id="tech-stack" className="py-8 sm:py-10 px-4 sm:px-6 overflow-hidden w-full max-w-[100vw]">
+      <div className="container mx-auto w-full">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-2">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
             style={{ color: "#192841" }}
           >
             The Tech Stack: The Right Tool for Your Vibe
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
             We are experts in taking output from bleeding-edge Generative UI tools and transforming them into scalable production platforms.
           </p>
         </div>
 
         <Tabs defaultValue="ai" className="max-w-5xl mx-auto">
-          <TabsList className="grid grid-cols-5 w-full mb-12">
+          <TabsList className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 w-full mb-8 sm:mb-10 md:mb-12 gap-2">
             <TabsTrigger value="ai">AI Accelerators</TabsTrigger>
             <TabsTrigger value="web">Web Platforms</TabsTrigger>
             <TabsTrigger value="mobile">Mobile</TabsTrigger>
@@ -278,27 +283,28 @@ const TechStack = () => {
 
           {Object.entries(techCategories).map(([key, technologies]) => (
             <TabsContent key={key} value={key}>
-              <div className="flex flex-wrap gap-2 sm:gap-4 justify-center p-2 sm:p-6 md:p-8">
+              <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center p-2 sm:p-4 md:p-6 lg:p-8">
                 {technologies.map((tech, index) => (
                   <div
                     key={index}
-                    onMouseEnter={() => setHovered({ cat: key, idx: index })}
-                    onMouseLeave={() => setHovered(null)}
+                    onMouseEnter={() => !isTouchDevice && setHovered({ cat: key, idx: index })}
+                    onMouseLeave={() => !isTouchDevice && setHovered(null)}
                     className="relative"
                   >
                     <Badge
                       variant="secondary"
-                      className={`px-6 py-3 text-base bg-card/80 text-foreground border border-border/40 transition-all duration-300 opacity-100 cursor-pointer ${
-                        hovered && hovered.cat === key && hovered.idx === index
+                      className={`px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm md:text-base bg-card/80 text-foreground border border-border/40 transition-all duration-300 opacity-100 cursor-pointer ${
+                        !isTouchDevice && hovered && hovered.cat === key && hovered.idx === index
                           ? "scale-105 shadow-2xl z-30 border-sky-400"
-                          : "hover:border-sky-400 hover:shadow-sky-blue"
+                          : "md:hover:border-sky-400 md:hover:shadow-sky-blue"
                       }`}
                     >
                       {tech.name}
                     </Badge>
-                    {/* Tooltip with pointer and richer content */}
+                    {/* Tooltip with pointer and richer content - hidden on touch devices */}
+                    {!isTouchDevice && (
                     <div
-                      className={`absolute left-1/2 -translate-x-1/2 mt-3 w-[320px] max-w-xs bg-background border border-border rounded-xl shadow-2xl p-5 text-sm text-muted-foreground font-sans transition-all duration-300 z-40 pointer-events-none flex flex-col items-center gap-2 ${
+                      className={`absolute left-1/2 -translate-x-1/2 mt-3 w-[280px] sm:w-[320px] max-w-xs bg-background border border-border rounded-xl shadow-2xl p-4 sm:p-5 text-xs sm:text-sm text-muted-foreground font-sans transition-all duration-300 z-40 pointer-events-none flex flex-col items-center gap-1.5 sm:gap-2 ${
                         hovered && hovered.cat === key && hovered.idx === index
                           ? "opacity-100 visible translate-y-0"
                           : "opacity-0 invisible -translate-y-2"
@@ -320,6 +326,7 @@ const TechStack = () => {
                       </div>
                       <div className="absolute left-1/2 -translate-x-1/2 -top-2 w-4 h-4 bg-background border-l border-t border-border rotate-45 z-10"></div>
                     </div>
+                    )}
                   </div>
                 ))}
               </div>

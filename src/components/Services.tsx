@@ -55,21 +55,26 @@ const Services = () => {
   ];
 
   const [hovered, setHovered] = React.useState<number | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   return (
     <section
       id="services"
-      className="py-8 px-2 sm:px-6 md:py-10 bg-muted/20"
+      className="py-8 sm:py-10 px-4 sm:px-6 bg-muted/20 overflow-hidden w-full max-w-[100vw]"
     >
-        <div className="container mx-auto">
-          <div className="text-center mb-12 md:mb-16">
+        <div className="container mx-auto w-full">
+          <div className="text-center mb-8 sm:mb-12 md:mb-16 px-2">
             <h2
-              className="text-4xl md:text-5xl font-bold mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
               style={{ color: "#192841" }}
             >
               Our Core Services: From Hallucination to Production
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
               We specialize in taking AI-generated code and transforming it into production-ready software that scales.
             </p>
           </div>
@@ -90,49 +95,49 @@ const Services = () => {
               </linearGradient>
             </defs>
           </svg>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
             {services.map((item, index) => {
               const Icon = item.icon;
               return (
                 <div
                   key={index}
                   className="flex h-full"
-                  onMouseEnter={() => setHovered(index)}
-                  onMouseLeave={() => setHovered(null)}
+                  onMouseEnter={() => !isTouchDevice && setHovered(index)}
+                  onMouseLeave={() => !isTouchDevice && setHovered(null)}
                 >
                   <Card
-                    className={`flex flex-col justify-between p-6 md:p-8 border border-border/40 transition-all duration-300 bg-[#F3F9FF] min-h-[520px] h-full w-full ${
-                      hovered === index
+                    className={`flex flex-col justify-between p-5 sm:p-6 md:p-8 border border-border/40 transition-all duration-300 bg-[#F3F9FF] min-h-[480px] sm:min-h-[520px] h-full w-full ${
+                      !isTouchDevice && hovered === index
                         ? "scale-105 shadow-2xl z-20 -translate-y-2"
-                        : "hover:shadow-sky-blue hover:-translate-y-1"
+                        : "md:hover:shadow-sky-blue md:hover:-translate-y-1"
                     }`}
                     style={{ background: "#F3F9FF" }}
                   >
                     <div>
-                      <div className="mb-4 flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                      <div className="mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
+                        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                           <Icon
-                            className="h-6 w-6"
+                            className="h-5 w-5 sm:h-6 sm:w-6"
                             style={{ color: "#8923cb" }}
                           />
                         </div>
-                        <span className="text-sm font-semibold text-muted-foreground">{item.step}</span>
+                        <span className="text-xs sm:text-sm font-semibold text-muted-foreground">{item.step}</span>
                       </div>
-                      <h3 className="text-2xl font-bold mb-3 text-primary font-sans tracking-tight text-left">
+                      <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-primary font-sans tracking-tight text-left">
                         {item.title}
                       </h3>
-                      <p className="text-base text-muted-foreground font-normal mb-4">
+                      <p className="text-sm sm:text-base text-muted-foreground font-normal mb-3 sm:mb-4">
                         {item.description}
                       </p>
-                      <ul className="text-sm text-muted-foreground font-normal font-sans leading-relaxed list-disc pl-6 text-left mb-6 space-y-2">
+                      <ul className="text-xs sm:text-sm text-muted-foreground font-normal font-sans leading-relaxed list-disc pl-5 sm:pl-6 text-left mb-4 sm:mb-6 space-y-1.5 sm:space-y-2">
                         {item.details.map((point, i) => (
                           <li key={i}>{point}</li>
                         ))}
                       </ul>
                     </div>
-                    <div className="mt-auto pt-4 border-t border-border/30">
-                      <p className="text-lg font-bold text-primary mb-4">{item.price}</p>
-                      <Button className="w-full bg-primary hover:bg-sky-400 text-white font-semibold">
+                    <div className="mt-auto pt-3 sm:pt-4 border-t border-border/30">
+                      <p className="text-base sm:text-lg font-bold text-primary mb-3 sm:mb-4">{item.price}</p>
+                      <Button className="w-full bg-primary hover:bg-sky-400 text-white font-semibold text-sm sm:text-base py-2 sm:py-3">
                         {item.cta}
                       </Button>
                     </div>

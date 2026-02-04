@@ -30,16 +30,16 @@ const pillars = [
 
 const WhyWorkWithUs = () => {
   return (
-    <section className="py-8 px-2 sm:px-6 md:py-10">
-      <div className="container mx-auto">
-        <div className="text-center mb-12 md:mb-16">
+    <section className="py-8 sm:py-10 px-4 sm:px-6 overflow-hidden w-full max-w-[100vw]">
+      <div className="container mx-auto w-full">
+        <div className="text-center mb-8 sm:mb-12 md:mb-16 px-2">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
             style={{ color: "#192841" }}
           >
             Why Work With Us?
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             We're not gatekeepers. We're builders who respect your vision and help you finish it.
           </p>
         </div>
@@ -59,25 +59,25 @@ const WhyWorkWithUs = () => {
             </linearGradient>
           </defs>
         </svg>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5 md:gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
           {pillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
               <Card
                 key={index}
-                className="p-6 md:p-8 border border-border/60 hover:border-border/80 transition-all duration-300 hover:shadow-sky-blue"
+                className="p-5 sm:p-6 md:p-8 border border-border/60 hover:border-border/80 transition-all duration-300 hover:shadow-sky-blue"
                 style={{ background: "#F3F9FF" }}
               >
-                <div className="mb-6 flex justify-center items-center">
-                  <Icon className="h-8 w-8" color="url(#why-gradient)" />
+                <div className="mb-4 sm:mb-5 md:mb-6 flex justify-center items-center">
+                  <Icon className="h-7 w-7 sm:h-8 sm:w-8" color="url(#why-gradient)" />
                 </div>
                 <h3
-                  className="text-2xl font-bold mb-4"
+                  className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4"
                   style={{ color: "#192841" }}
                 >
                   {pillar.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                   {pillar.description}
                 </p>
               </Card>

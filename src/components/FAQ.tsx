@@ -41,21 +41,22 @@ const FAQ = () => {
       className="border border-border rounded-lg overflow-hidden transition-all duration-200 hover:border-primary/50"
     >
       <button
-        className="w-full px-6 py-4 flex items-center justify-between bg-white hover:bg-muted/30 transition-colors"
+        className="w-full px-4 sm:px-5 md:px-6 py-4 sm:py-5 flex items-center justify-between bg-white active:bg-muted/30 md:hover:bg-muted/30 transition-colors touch-manipulation min-h-[56px]"
         onClick={() => toggleFAQ(index)}
+        aria-expanded={openIndex === index}
       >
-        <h3 className="text-lg font-semibold text-left text-primary">
+        <h3 className="text-sm sm:text-base md:text-lg font-semibold text-left text-primary">
           {faq.question}
         </h3>
         <ChevronDown
-          className={`h-5 w-5 text-primary transition-transform duration-200 flex-shrink-0 ml-4 ${
+          className={`h-4 w-4 sm:h-5 sm:w-5 text-primary transition-transform duration-200 flex-shrink-0 ml-3 sm:ml-4 ${
             openIndex === index ? "transform rotate-180" : ""
           }`}
         />
       </button>
       {openIndex === index && (
-        <div className="px-6 py-4 bg-muted/20 border-t border-border">
-          <p className="text-base text-muted-foreground leading-relaxed">
+        <div className="px-4 sm:px-5 md:px-6 py-3 sm:py-4 bg-muted/20 border-t border-border">
+          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
             {faq.answer}
           </p>
         </div>
@@ -64,22 +65,22 @@ const FAQ = () => {
   );
 
   return (
-    <section id="faq" className="py-10 px-6 bg-muted/20">
-      <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16">
+    <section id="faq" className="py-8 sm:py-10 px-4 sm:px-6 bg-muted/20 overflow-hidden w-full max-w-[100vw]">
+      <div className="container mx-auto max-w-6xl w-full">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16 px-2">
           <h2
-            className="text-4xl md:text-5xl font-bold mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4"
             style={{ color: "#192841" }}
           >
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground">
             Get answers to common questions about our Prompt-to-Product services.
           </p>
         </div>
 
         {/* Grid layout: 2-2-1 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
           {/* Left Column - 2 FAQs */}
           <div className="space-y-6">
             <FAQCard faq={faqs[0]} index={0} />

@@ -57,8 +57,8 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
   };
 
   const form = (
-    <form className="space-y-6 p-8 bg-white rounded-2xl shadow-none border-none" onSubmit={handleSubmit}>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <form className="space-y-4 sm:space-y-5 md:space-y-6 p-5 sm:p-6 md:p-8 bg-white rounded-2xl shadow-none border-none" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
   <div className="space-y-2">
     <label htmlFor="name" className="text-sm font-medium">
       Full Name *
@@ -111,7 +111,7 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
       <Button
         type="submit"
         size="lg"
-        className="w-full hover:bg-sky-400 hover:shadow-sky-blue bg-[#192841] text-white text-base font-semibold rounded-lg"
+        className="w-full active:bg-sky-500 md:hover:bg-sky-400 md:hover:shadow-sky-blue bg-[#192841] text-white text-base sm:text-lg font-semibold rounded-lg touch-manipulation min-h-[48px] py-3"
         disabled={loading}
       >
         {loading ? "Scheduling..." : "Get My Launch Plan"}
@@ -120,53 +120,53 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
   );
   if (onlyForm) return form;
   return (
-    <section id="contact" className="py-10 px-6 bg-muted/30">
-      <div className="container mx-auto max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+    <section id="contact" className="py-8 sm:py-10 px-4 sm:px-6 bg-muted/30 overflow-hidden w-full max-w-[100vw]">
+      <div className="container mx-auto max-w-7xl w-full">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 px-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             Stop Prompting, Start Selling
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
             Don't let your great idea die in a chat window. Let's look at what you've built and map out the finish line.
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
           {/* Left Side - Benefits */}
-          <div className="space-y-8">
-            <h3 className="text-3xl font-bold">What happens next?</h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+          <div className="space-y-6 sm:space-y-8">
+            <h3 className="text-2xl sm:text-3xl font-bold">What happens next?</h3>
+            <div className="space-y-3 sm:space-y-4">
+              <div className="flex items-start gap-2 sm:gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-0.5 sm:mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Code Review</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-base sm:text-lg">Code Review</h4>
+                  <p className="text-sm sm:text-base text-muted-foreground">
                     We analyze your AI-generated prototype and identify issues
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2 sm:gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-0.5 sm:mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Roadmap Session</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-base sm:text-lg">Roadmap Session</h4>
+                  <p className="text-sm sm:text-base text-muted-foreground">
                     15-minute call to map out your path from prototype to production
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2 sm:gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-0.5 sm:mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Clear Timeline</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-base sm:text-lg">Clear Timeline</h4>
+                  <p className="text-sm sm:text-base text-muted-foreground">
                    Exact breakdown of what needs fixing, building, and deploying
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+              <div className="flex items-start gap-2 sm:gap-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary flex-shrink-0 mt-0.5 sm:mt-1" />
                 <div>
-                  <h4 className="font-semibold text-lg">Next Steps</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-base sm:text-lg">Next Steps</h4>
+                  <p className="text-sm sm:text-base text-muted-foreground">
                    Clear pricing and options to move forward (or not)
                   </p>
                 </div>
@@ -174,7 +174,7 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
             </div>
           </div>
           {/* Right Side - Contact Form */}
-          <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-8 shadow-lg">
+          <div className="bg-card/50 backdrop-blur-sm border border-border rounded-2xl p-0 sm:p-4 md:p-6 lg:p-8 shadow-lg">
             {form}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Html, OrbitControls } from "@react-three/drei";
 import { useState } from "react";
@@ -9,7 +9,13 @@ import logo from "@/assets/lowcodenocode.png";
 function FloatingImage({ textureUrl }: { textureUrl: string }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [texture] = useState(() => new THREE.TextureLoader().load(textureUrl));
+
+  useEffect(() => {
+    // Detect touch device
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -41,8 +47,8 @@ function FloatingImage({ textureUrl }: { textureUrl: string }) {
   return (
     <mesh
       ref={meshRef}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
+      onPointerOver={() => !isTouchDevice && setHovered(true)}
+      onPointerOut={() => !isTouchDevice && setHovered(false)}
     >
       <planeGeometry args={[2.5, 2.5]} />
       <meshStandardMaterial 
@@ -56,13 +62,25 @@ function FloatingImage({ textureUrl }: { textureUrl: string }) {
 }
 
 export default function Hero3DImage() {
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  }, []);
+
   return (
-    <div className="w-full h-[640px] md:h-[720px] flex items-center justify-center bg-white">
-      <Canvas camera={{ position: [0, 0, 5], fov: 40 }} style={{ background: 'white' }}>
+    <div 
+      className="w-full h-[350px] sm:h-[450px] md:h-[600px] lg:h-[720px] flex items-center justify-center bg-white"
+      style={isTouchDevice ? { pointerEvents: 'none', touchAction: 'pan-y' } : {}}
+    >
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 40 }} 
+        style={{ background: 'white', pointerEvents: isTouchDevice ? 'none' : 'auto' }}
+      >
         <ambientLight intensity={1.2} />
         <directionalLight position={[2, 4, 2]} intensity={0.3} color="#ffffff" />
         <FloatingImage textureUrl= {logo} />
-        <OrbitControls enableZoom={false} enablePan={false} />
+        {!isTouchDevice && <OrbitControls enableZoom={false} enablePan={false} />}
       </Canvas>
     </div>
   );

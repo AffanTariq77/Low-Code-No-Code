@@ -258,7 +258,7 @@ const TechStack = () => {
   }, []);
 
   return (
-    <section id="tech-stack" className="py-8 sm:py-10 px-4 sm:px-6 overflow-hidden w-full max-w-[100vw]">
+    <section id="tech-stack" className="py-8 sm:py-10 px-4 sm:px-6 overflow-visible w-full max-w-[100vw]">
       <div className="container mx-auto w-full">
         <div className="text-center mb-8 sm:mb-12 md:mb-16 px-2">
           <h2
@@ -282,8 +282,8 @@ const TechStack = () => {
           </TabsList>
 
           {Object.entries(techCategories).map(([key, technologies]) => (
-            <TabsContent key={key} value={key}>
-              <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center p-2 sm:p-4 md:p-6 lg:p-8">
+            <TabsContent key={key} value={key} className="overflow-visible">
+              <div className="flex flex-wrap gap-2 sm:gap-3 md:gap-4 justify-center p-2 sm:p-4 md:p-6 lg:p-8 overflow-visible">
                 {technologies.map((tech, index) => (
                   <div
                     key={index}

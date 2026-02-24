@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle } from "lucide-react";
-
+import { submitForm } from "@/lib/supabaseClient";
 
 import React, { useState } from "react";
 
@@ -33,20 +33,28 @@ const ContactForm = ({ onlyForm = false }: { onlyForm?: boolean }) => {
       return;
     }
     try {
-      const res = await fetch("/api/contact", {
+      await submitForm({
+        platform: "Low-Code-No-Code",
+        full_name: formData.name,
+        work_email: formData.email,
+        company_name: formData.company,
+        additional_details: formData.details,
+      });
+      // Call Supabase Edge Function for email notification
+      await fetch("https://peyolawdogcqlndypnnh.supabase.co/functions/v1/send-notification", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+        },
         body: JSON.stringify({
+          platform: "Low-Code-No-Code",
           name: formData.name,
           email: formData.email,
-          message: formData.details,
           company: formData.company,
+          details: formData.details,
         }),
       });
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to book your launch plan.");
-      }
       setSuccess(true);
       setFormData({ name: "", email: "", company: "", details: "" });
     } catch (err: any) {
